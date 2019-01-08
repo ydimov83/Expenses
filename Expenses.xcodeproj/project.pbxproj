@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9436AD2B21E0281700A2A86A /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436AD2A21E0281700A2A86A /* CheckListItem.swift */; };
+		9469A6A921DFDEB800E43817 /* ExpensesTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCD421DEA140001D9926 /* ExpensesTests.xctest */; };
+		9469A6AA21DFDEBB00E43817 /* ExpensesUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCDF21DEA140001D9926 /* ExpensesUITests.xctest */; };
 		946ABCC421DEA13E001D9926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCC321DEA13E001D9926 /* AppDelegate.swift */; };
-		946ABCC621DEA13E001D9926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCC521DEA13E001D9926 /* ViewController.swift */; };
+		946ABCC621DEA13E001D9926 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCC521DEA13E001D9926 /* CheckListViewController.swift */; };
 		946ABCC921DEA13E001D9926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCC721DEA13E001D9926 /* Main.storyboard */; };
 		946ABCCB21DEA140001D9926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCCA21DEA140001D9926 /* Assets.xcassets */; };
 		946ABCCE21DEA140001D9926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCCC21DEA140001D9926 /* LaunchScreen.storyboard */; };
 		946ABCD921DEA140001D9926 /* ExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCD821DEA140001D9926 /* ExpensesTests.swift */; };
 		946ABCE421DEA140001D9926 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCE321DEA140001D9926 /* ExpensesUITests.swift */; };
+		949FD71621E131B000B4212D /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FD71521E131B000B4212D /* AddItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9436AD2A21E0281700A2A86A /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
 		946ABCC021DEA13E001D9926 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		946ABCC321DEA13E001D9926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		946ABCC521DEA13E001D9926 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		946ABCC521DEA13E001D9926 /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
 		946ABCC821DEA13E001D9926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		946ABCCA21DEA140001D9926 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		946ABCCD21DEA140001D9926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		946ABCDF21DEA140001D9926 /* ExpensesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		946ABCE321DEA140001D9926 /* ExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITests.swift; sourceTree = "<group>"; };
 		946ABCE521DEA140001D9926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		949FD71521E131B000B4212D /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +103,14 @@
 		946ABCC221DEA13E001D9926 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
+				9436AD2A21E0281700A2A86A /* CheckListItem.swift */,
 				946ABCC321DEA13E001D9926 /* AppDelegate.swift */,
-				946ABCC521DEA13E001D9926 /* ViewController.swift */,
+				946ABCC521DEA13E001D9926 /* CheckListViewController.swift */,
 				946ABCC721DEA13E001D9926 /* Main.storyboard */,
 				946ABCCA21DEA140001D9926 /* Assets.xcassets */,
 				946ABCCC21DEA140001D9926 /* LaunchScreen.storyboard */,
 				946ABCCF21DEA140001D9926 /* Info.plist */,
+				949FD71521E131B000B4212D /* AddItemViewController.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9469A6A921DFDEB800E43817 /* ExpensesTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9469A6AA21DFDEBB00E43817 /* ExpensesUITests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +266,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				946ABCC621DEA13E001D9926 /* ViewController.swift in Sources */,
+				9436AD2B21E0281700A2A86A /* CheckListItem.swift in Sources */,
+				949FD71621E131B000B4212D /* AddItemViewController.swift in Sources */,
+				946ABCC621DEA13E001D9926 /* CheckListViewController.swift in Sources */,
 				946ABCC421DEA13E001D9926 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = YDCO.Expenses;
+				PRODUCT_BUNDLE_IDENTIFIER = YDCO.ShoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,7 +469,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = YDCO.Expenses;
+				PRODUCT_BUNDLE_IDENTIFIER = YDCO.ShoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
