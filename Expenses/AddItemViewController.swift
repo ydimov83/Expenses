@@ -59,8 +59,6 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         let stringRange = Range(range, in:oldText)!
         let newText = oldText.replacingCharacters(in: stringRange,
                                                   with: string)
-        print(doneBarButton.isEnabled)
-        print(!newText.isEmpty)
         doneBarButton.isEnabled = !newText.isEmpty
         return true
     }
