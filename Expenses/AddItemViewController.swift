@@ -11,9 +11,12 @@ import UIKit
 protocol AddItemViewControllerDelegate: class {
     func addItemViewControllerDidCancel(_ controller: AddItemViewController)
     func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
 }
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
+    
+    var itemToEdit: ChecklistItem?
     
     //MARK: - Outlets
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
@@ -25,6 +28,11 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let itemToEdit = itemToEdit {
+            title = "Edit Item"
+            textField.text = itemToEdit.text
+            doneBarButton.isEnabled = true
+        }
         navigationItem.largeTitleDisplayMode = .never
 
     }
@@ -41,9 +49,15 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     }
 
     @IBAction func done() {
-        let item = ChecklistItem()
-        item.text = textField.text!
-        delegate?.addItemViewController(self, didFinishAdding: item)
+        if let item = itemToEdit { //if we have an item to edit we want to call the didFinishEditing protocol implementation
+            item.text = textField.text!
+            delegate?.addItemViewController(self, didFinishEditing: item)
+        } else {
+            let item = ChecklistItem()
+            item.text = textField.text!
+            delegate?.addItemViewController(self, didFinishAdding: item)
+        }
+        
     }
     
     //MARK: - Tableview delegates
