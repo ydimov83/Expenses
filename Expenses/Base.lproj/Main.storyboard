@@ -49,6 +49,9 @@
                                         <constraint firstItem="dsM-30-Lzv" firstAttribute="top" secondItem="CgJ-0A-ggt" secondAttribute="top" id="pRU-bp-SlL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="pe8-7Y-RPS" kind="show" identifier="EditItem" trigger="accessoryAction" id="gJg-bh-eSA"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -153,4 +156,7 @@
             <point key="canvasLocation" x="427.5" y="55.985915492957744"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gJg-bh-eSA"/>
+    </inferredMetricsTieBreakers>
 </document>
