@@ -17,7 +17,7 @@
 		946ABCCE21DEA140001D9926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCCC21DEA140001D9926 /* LaunchScreen.storyboard */; };
 		946ABCD921DEA140001D9926 /* ExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCD821DEA140001D9926 /* ExpensesTests.swift */; };
 		946ABCE421DEA140001D9926 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCE321DEA140001D9926 /* ExpensesUITests.swift */; };
-		949FD71621E131B000B4212D /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FD71521E131B000B4212D /* AddItemViewController.swift */; };
+		949FD71621E131B000B4212D /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FD71521E131B000B4212D /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		946ABCDF21DEA140001D9926 /* ExpensesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		946ABCE321DEA140001D9926 /* ExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITests.swift; sourceTree = "<group>"; };
 		946ABCE521DEA140001D9926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		949FD71521E131B000B4212D /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		949FD71521E131B000B4212D /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +110,7 @@
 				946ABCCA21DEA140001D9926 /* Assets.xcassets */,
 				946ABCCC21DEA140001D9926 /* LaunchScreen.storyboard */,
 				946ABCCF21DEA140001D9926 /* Info.plist */,
-				949FD71521E131B000B4212D /* AddItemViewController.swift */,
+				949FD71521E131B000B4212D /* ItemDetailViewController.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9436AD2B21E0281700A2A86A /* CheckListItem.swift in Sources */,
-				949FD71621E131B000B4212D /* AddItemViewController.swift in Sources */,
+				949FD71621E131B000B4212D /* ItemDetailViewController.swift in Sources */,
 				946ABCC621DEA13E001D9926 /* CheckListViewController.swift in Sources */,
 				946ABCC421DEA13E001D9926 /* AppDelegate.swift in Sources */,
 			);

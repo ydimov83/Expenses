@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ChecklistItem {
+class ChecklistItem: NSObject, Codable {
     var text = "YAR"
     var checked = false
     
