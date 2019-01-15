@@ -15,19 +15,13 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         // Do any additional setup after loading the view, typically from a nib.
+        loadCheckListItem()
         
-        let item1 = ChecklistItem()
-        item1.checked = true
-        item1.text = "i'm item 1"
-        items.append(item1)
-        
-        let item2 = ChecklistItem()
-        item2.checked = false
-        item2.text = "do programming exercise"
-        items.append(item2)
+        print("App directory is:  \(documentsDirectory())")
+        print("File path is: \(dataFilePath())")
     }
     
     //MARK: - Navigation
@@ -92,6 +86,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         
         //will deselect the tapped on row and animate
         tableView.deselectRow(at: indexPath, animated: true)
+        saveCheckListItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -100,9 +95,10 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic) //removes the current row from the view
+        saveCheckListItems()
     }
 
-    //MARK: AddItemViewController protocol delegate methods
+    //MARK: - AddItemViewController protocol delegate methods
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true) //dismiss the add item screen
     }
@@ -115,6 +111,8 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic) //item is added to the view
         navigationController?.popViewController(animated: true) //dismiss the add item screen
+        saveCheckListItems()
+
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
@@ -125,6 +123,47 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             }
         }
         navigationController?.popViewController(animated: true)
+        saveCheckListItems()
+    }
+    
+    //MARK: - Data Management
+    
+    //Find out where app directory is
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("ShoppingList.plist")
+    }
+    
+    func saveCheckListItems() {
+        let encoder = PropertyListEncoder()
+        
+        // the do statement here is used since we know that the code after it can throw an error, thus we must be able to catch it if it occurs
+        do {
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadCheckListItem() {
+        let path = dataFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            
+            do {
+                items = try decoder.decode([ChecklistItem].self, from: data)
+            }
+            catch {
+                print("Encountered an error trying to decode data: \(error.localizedDescription)")
+            }
+        }
     }
 
     
