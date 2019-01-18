@@ -11,13 +11,16 @@ import UIKit
 class CheckListViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
     var items = [ChecklistItem]()
+    var checklist: Checklist!
 
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = false
         
-        // Do any additional setup after loading the view, typically from a nib.
+        navigationItem.largeTitleDisplayMode = .never
+        title = checklist.name //set the title of the screen to the name of the checklist that was passed to us when performing the segue
+        
+        //Load the view with any saved check list items
         loadCheckListItem()
         
         print("App directory is:  \(documentsDirectory())")
