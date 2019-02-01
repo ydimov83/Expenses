@@ -11,9 +11,19 @@ import Foundation
 
 class DataModel {
     var lists = [Checklist]()
+    var indexOfSelectedChecklist: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "CheckListIndex")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "CheckListIndex")
+        }
+    }
     
     init () {
         loadChecklists()
+        registerDefaults()
+        handleFirstTime()
     }
     //MARK: - Data Management
     
@@ -49,10 +59,38 @@ class DataModel {
             
             do {
                 lists = try decoder.decode([Checklist].self, from: data)
+                sortChecklist()
             }
             catch {
                 print("Encountered an error trying to decode data: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func registerDefaults() {
+        let dictionary = [ "CheckListIndex": -1, "FirstTime": true ] as [String : Any]
+        UserDefaults.standard.register(defaults: dictionary)
+    }
+    
+    func handleFirstTime() {
+        let userDefaults = UserDefaults.standard
+        let firstTime = userDefaults.bool(forKey: "FirstTime")
+        
+        if firstTime {
+            let checklist = Checklist(name: "List")
+            lists.append(checklist)
+            
+            indexOfSelectedChecklist = 0
+            userDefaults.set(false, forKey: "FirstTime")
+            userDefaults.synchronize()
+            
+        }
+    }
+    
+    func sortChecklist() {
+        lists.sort(by:
+            { list1, list2 in
+                return list1.name.localizedStandardCompare(list2.name)
+                    == .orderedAscending})
     }
 }
