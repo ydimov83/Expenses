@@ -19,7 +19,6 @@
 		946ABCC621DEA13E001D9926 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCC521DEA13E001D9926 /* CheckListViewController.swift */; };
 		946ABCC921DEA13E001D9926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCC721DEA13E001D9926 /* Main.storyboard */; };
 		946ABCCB21DEA140001D9926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCCA21DEA140001D9926 /* Assets.xcassets */; };
-		946ABCCE21DEA140001D9926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946ABCCC21DEA140001D9926 /* LaunchScreen.storyboard */; };
 		946ABCD921DEA140001D9926 /* ExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCD821DEA140001D9926 /* ExpensesTests.swift */; };
 		946ABCE421DEA140001D9926 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ABCE321DEA140001D9926 /* ExpensesUITests.swift */; };
 		949FD71621E131B000B4212D /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FD71521E131B000B4212D /* ItemDetailViewController.swift */; };
@@ -54,7 +53,6 @@
 		946ABCC521DEA13E001D9926 /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
 		946ABCC821DEA13E001D9926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		946ABCCA21DEA140001D9926 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		946ABCCD21DEA140001D9926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		946ABCCF21DEA140001D9926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		946ABCD421DEA140001D9926 /* ExpensesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		946ABCD821DEA140001D9926 /* ExpensesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTests.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			children = (
 				946ABCC721DEA13E001D9926 /* Main.storyboard */,
 				946ABCCA21DEA140001D9926 /* Assets.xcassets */,
-				946ABCCC21DEA140001D9926 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -276,7 +273,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				946ABCCE21DEA140001D9926 /* LaunchScreen.storyboard in Resources */,
 				946ABCCB21DEA140001D9926 /* Assets.xcassets in Resources */,
 				946ABCC921DEA13E001D9926 /* Main.storyboard in Resources */,
 			);
@@ -355,14 +351,6 @@
 				946ABCC821DEA13E001D9926 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		946ABCCC21DEA140001D9926 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				946ABCCD21DEA140001D9926 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
