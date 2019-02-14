@@ -25,6 +25,16 @@ class DataModel {
         registerDefaults()
         handleFirstTime()
     }
+    
+    // Class level method (instead of instance method) so that we can call this without having a direct reference to a DataModel object
+    class func nextChecklistItemID() -> Int {
+        let userDefaults = UserDefaults.standard
+        let itemID = userDefaults.integer(forKey: "ChecklistItemID")
+        userDefaults.set(itemID + 1, forKey: "ChecklistItemID")
+        userDefaults.synchronize()
+        
+        return itemID
+    }
     //MARK: - Data Management
     
     //Find out where app directory is
@@ -93,4 +103,6 @@ class DataModel {
                 return list1.name.localizedStandardCompare(list2.name)
                     == .orderedAscending})
     }
+    
+
 }
