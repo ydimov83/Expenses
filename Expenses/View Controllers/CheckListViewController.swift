@@ -37,19 +37,22 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
         //central function that can be called to config checkmark status of the table view cell and avoid code duplication
-        let label = cell.viewWithTag(1001) as! UILabel
         if item.checked {
-            label.text = "√"
+            cell.imageView?.image = UIImage(named: "Check")
         } else {
-            label.text = ""
+            cell.imageView?.image = UIImage(named: "No Icon")
         }
     }
     
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         //central function that can be called to config row text and avoid code duplication
+        let formatter = DateFormatter()
         
-        let label = cell.viewWithTag(1000) as! UILabel
-        label.text = item.text
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        
+        cell.detailTextLabel?.text = formatter.string(from: item.dueDate)
+        cell.textLabel?.text = item.text
     }
     
     // MARK: - Table View Data Source
@@ -59,38 +62,28 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItem", for: indexPath)
-        //
-        //        let item = checklist.items[indexPath.row]
-        //        configureText(for: cell, with: item)
-        //
-        //        configureCheckmark(for: cell, with: item)
-        //        return cell //returns the cell for the current row
         
-        
-        
-        
-        let cell: UITableViewCell!
-        if let c = tableView.dequeueReusableCell(withIdentifier: "CheckListItem") {
-            cell = c
-        } else {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "CheckListItem")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItem", for: indexPath)
         
         let item = checklist.items[indexPath.row]
-        
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        print(item.text)
-        let formattedDateLabelText = formatter.string(from: item.dueDate)
-        print("formatted label: \(formattedDateLabelText)")
-        cell.detailTextLabel?.text = formattedDateLabelText
-        
         configureText(for: cell, with: item)
+        
         configureCheckmark(for: cell, with: item)
-        return cell
+        return cell //returns the cell for the current row
+        
+        
+        //
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItem", for: indexPath)
+        //        let item = checklist.items[indexPath.row]
+        //
+        //        let formatter = DateFormatter()
+        //        formatter.dateStyle = .medium
+        //        formatter.timeStyle = .short
+        //        print(item.text)
+        //        let formattedDateLabelText = formatter.string(from: item.dueDate)
+        //        print("formatted label: \(formattedDateLabelText)")
+        //        cell.detailTextLabel?.text = formattedDateLabelText
+        //        cell.textLabel?.text = item.text
     }
     
     //MARK: - Table view delegate
@@ -146,7 +139,4 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         navigationController?.popViewController(animated: true)
     }
     
-    
 }
-
-
