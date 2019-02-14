@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 protocol ItemDetailViewControllerDelegate: class {
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
@@ -31,7 +32,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     //MARK: - Delegate
     weak var delegate: ItemDetailViewControllerDelegate?
     
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let itemToEdit = itemToEdit {
@@ -43,34 +44,52 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         }
         updateDueDateLabel()
         navigationItem.largeTitleDisplayMode = .never
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         textField.becomeFirstResponder()
     }
     
-   
+    
     
     //MARK: - Actions
     @IBAction func cancel() {
         delegate?.itemDetailViewControllerDidCancel(self)
     }
-
+    
     @IBAction func done() {
         if let item = itemToEdit { //if we have an item to edit we want to call the didFinishEditing protocol implementation
             item.text = textField.text!
             item.dueDate = dueDate
             item.shouldRemind = shouldRemindSwitch.isOn
+            item.scheduleNotification()
             delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
             let item = ChecklistItem()
             item.text = textField.text!
             item.dueDate = dueDate
             item.shouldRemind = shouldRemindSwitch.isOn
+            item.scheduleNotification()
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
         
+    }
+    
+    @IBAction func dateChanged(_ datePicker: UIDatePicker) {
+        dueDate = datePicker.date
+        updateDueDateLabel()
+    }
+    
+    @IBAction func shouldRemindToggled(_ switchControl: UISwitch) {
+        textField.resignFirstResponder()
+        if switchControl.isOn {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound]) {
+                granted, error in
+                //do nothing
+            }
+        }
     }
     
     //MARK: - Tableview delegates
@@ -79,7 +98,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             return indexPath //enables cell selection for the Date label cells
         } else {
             return nil //make sure we disable cell selection for all other cells
-
+            
         }
     }
     
@@ -113,7 +132,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         textField.resignFirstResponder()
         if indexPath.section == 1 && indexPath.row == 1 {
-            showDatePicker()
+            if !datePickerVisible {
+                showDatePicker()
+            } else {
+                hideDatePicker()
+            }
         }
     }
     
@@ -125,7 +148,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         }
         return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
     }
-   
+    
     // MARK:- Text Field Delegates
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -142,6 +165,10 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hideDatePicker()
+    }
+    
     //MARK: - Helper Methods
     
     func updateDueDateLabel() {
@@ -155,5 +182,17 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         datePickerVisible = true
         let indexPathDatePicker = IndexPath(row: 2, section: 1)
         tableView.insertRows(at: [indexPathDatePicker], with: .fade)
+        datePicker.setDate(dueDate, animated: false) //Need this in order to show correct Date value when editing items with existing reminder dates
+        dueDateLabel.textColor = dueDateLabel.tintColor
     }
+    
+    func hideDatePicker() {
+        if datePickerVisible {
+            datePickerVisible = false
+            let indexPathDatePicker = IndexPath(row: 2, section: 1)
+            tableView.deleteRows(at: [indexPathDatePicker], with: .fade)
+            dueDateLabel.textColor = UIColor.black
+        }
+    }
+    
 }
