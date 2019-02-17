@@ -11,6 +11,7 @@ import UIKit
 class CheckListViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
     var checklist: Checklist!
+    var dataModel =  DataModel()
     
     
     override func viewDidLoad() {
@@ -18,7 +19,6 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         
         navigationItem.largeTitleDisplayMode = .never
         title = checklist.name //set the title of the screen to the name of the checklist that was passed to us when performing the segue
-        
     }
     
     //MARK: - Navigation
@@ -35,22 +35,24 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         }
     }
     
-    func configureCheckmark(for cell: UITableViewCell,
-                            with item: ChecklistItem) {
+    func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
         //central function that can be called to config checkmark status of the table view cell and avoid code duplication
-        let label = cell.viewWithTag(1001) as! UILabel
         if item.checked {
-            label.text = "√"
+            cell.imageView?.image = UIImage(named: "Check")
         } else {
-            label.text = ""
+            cell.imageView?.image = UIImage(named: "No Icon")
         }
     }
     
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         //central function that can be called to config row text and avoid code duplication
+        let formatter = DateFormatter()
         
-        let label = cell.viewWithTag(1000) as! UILabel
-        label.text = item.text
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        
+        cell.detailTextLabel?.text = formatter.string(from: item.dueDate)
+        cell.textLabel?.text = item.text
     }
     
     // MARK: - Table View Data Source
@@ -68,6 +70,20 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         
         configureCheckmark(for: cell, with: item)
         return cell //returns the cell for the current row
+        
+        
+        //
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItem", for: indexPath)
+        //        let item = checklist.items[indexPath.row]
+        //
+        //        let formatter = DateFormatter()
+        //        formatter.dateStyle = .medium
+        //        formatter.timeStyle = .short
+        //        print(item.text)
+        //        let formattedDateLabelText = formatter.string(from: item.dueDate)
+        //        print("formatted label: \(formattedDateLabelText)")
+        //        cell.detailTextLabel?.text = formattedDateLabelText
+        //        cell.textLabel?.text = item.text
     }
     
     //MARK: - Table view delegate
@@ -105,6 +121,8 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic) //item is added to the view
+        dataModel.sortChecklistItems(list: checklist)
+        tableView.reloadData()
         navigationController?.popViewController(animated: true) //dismiss the add item screen
         
     }
@@ -116,10 +134,9 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
                 configureText(for: cell, with: item)
             }
         }
+        dataModel.sortChecklistItems(list: checklist)
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
-
 }
-
-

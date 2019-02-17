@@ -136,8 +136,7 @@ UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerD
     
     //MARK: - TableView data source
     
-    override func tableView(
-        _ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         dataModel.lists.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
